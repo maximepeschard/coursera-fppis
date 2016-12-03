@@ -87,15 +87,15 @@ object Anagrams {
    */
   def combinations(occurrences: Occurrences): List[Occurrences] = {
     def tupleCombinations(c: Char, n: Int): List[List[(Char,Int)]] =
-  	  List() :: (for { i <- List.range(1,n+1) } yield List((c,i)))
+      List() :: (for { i <- List.range(1,n+1) } yield List((c,i)))
 
     occurrences match {
-  	  case Nil => List(List())
-  	  case (c,n)::tail =>
-  		  for {
-  			  h <- tupleCombinations(c, n)
-  			  t <- combinations(tail)
-  		  } yield h ::: t
+      case Nil => List(List())
+      case (c,n)::tail =>
+        for {
+          h <- tupleCombinations(c, n)
+          t <- combinations(tail)
+        } yield h ::: t
     }
   }
 
@@ -159,8 +159,8 @@ object Anagrams {
   def sentenceAnagrams(sentence: Sentence): List[Sentence] = {
     def prepend(w: Word, sentences: List[Sentence]): List[Sentence] =
       sentences match {
-   	    case Nil => Nil
-   	    case sentence::tail => (w::sentence) :: prepend(w, tail)
+        case Nil => Nil
+        case sentence::tail => (w::sentence) :: prepend(w, tail)
       }
 
     def occurrencesAnagrams(occurrences: Occurrences): List[Sentence] =
@@ -177,6 +177,6 @@ object Anagrams {
           ).flatten
       }
 
-  	occurrencesAnagrams(sentenceOccurrences(sentence))
+    occurrencesAnagrams(sentenceOccurrences(sentence))
   }
 }
